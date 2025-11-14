@@ -19,3 +19,11 @@ squares.forEach(square => {
         }
     });
 });
+
+square.addEventListener('mouseenter', () => {
+    square.classList.add('hover');
+});
+
+square.addEventListener('mouseleave', () => {
+    square.classList.remove('hover');
+});
