@@ -6,3 +6,16 @@ window.addEventListener('DOMContentLoaded', () => {
         square.classList.add('square');
     });
 });
+let currentPlayer = 'X';
+
+squares.forEach(square => {
+    square.addEventListener('click', () => {
+        if (square.textContent === '') {     // only fill empty squares
+            square.textContent = currentPlayer;
+            square.classList.add(currentPlayer);
+
+            // Switch turns
+            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+        }
+    });
+});
