@@ -27,3 +27,39 @@ square.addEventListener('mouseenter', () => {
 square.addEventListener('mouseleave', () => {
     square.classList.remove('hover');
 });
+
+const status = document.getElementById('status');
+
+    function checkWinner() {
+        const winningCombos = [
+            [0,1,2], [3,4,5], [6,7,8],
+            [0,3,6], [1,4,7], [2,5,8],
+            [0,4,8], [2,4,6]
+        ];
+
+        return winningCombos.some(combo => {
+            const [a, b, c] = combo;
+            return (
+                squares[a].textContent !== '' &&
+                squares[a].textContent === squares[b].textContent &&
+                squares[a].textContent === squares[c].textContent
+            );
+        });
+    }
+
+    // Update click function to include winner check:
+    squares.forEach(square => {
+        square.addEventListener('click', () => {
+            if (square.textContent === '') {
+                square.textContent = currentPlayer;
+                square.classList.add(currentPlayer);
+
+                if (checkWinner()) {
+                    status.textContent = `Congratulations! ${currentPlayer} is the Winner!`;
+                    status.classList.add('you-won');
+                } else {
+                    currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                }
+            }
+        });
+    });
