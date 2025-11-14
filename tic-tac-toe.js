@@ -10,7 +10,8 @@ let currentPlayer = 'X';
 
 squares.forEach(square => {
     square.addEventListener('click', () => {
-        if (square.textContent === '') {     // only fill empty squares
+        if (square.textContent !== '' || status.classList.contains('you-won')) {
+            return; 
             square.textContent = currentPlayer;
             square.classList.add(currentPlayer);
 
