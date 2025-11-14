@@ -63,3 +63,17 @@ const status = document.getElementById('status');
             }
         });
     });
+
+    const newGame = document.querySelector('.btn');
+
+    newGame.addEventListener('click', () => {
+        squares.forEach(square => {
+            square.textContent = '';
+            square.classList.remove('X', 'O');
+        });
+
+        status.textContent = "Move your mouse over a square and click to play an X or an O.";
+        status.classList.remove('you-won');
+
+        currentPlayer = 'X';
+    });
